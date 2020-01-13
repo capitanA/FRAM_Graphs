@@ -9,9 +9,9 @@ import ipdb
 class Fram:
     def __init__(self):
         self.hexagons = list()
-        self.G = nx.MultiGraph()
 
     def model_upload(self, root, r, flag_func_NO=False):
+        self.G = nx.MultiGraph()
         root.filename = filedialog.askopenfilename(initialdir="/", title="Select file")
         # self.xfmv_path = root.filename
         xml_root = ET.parse(root.filename)
@@ -47,6 +47,7 @@ class Fram:
         for hexagon in self.hexagons:
             self.add_connectors(xml_root, hexagon)
         self.create_model_graph()
+        return self.hexagons
 
     def create_model_graph(self):
         for hexagon in self.hexagons:
@@ -60,6 +61,8 @@ class Fram:
                                 T=edge_attributes[2],
                                 C=edge_attributes[3], R=edge_attributes[4],
                                 value=connected_aspect.text)
+        # print(self.G.edges)
+        self.hexagons.clear()
 
     def get_out_text(self, xml_root, func_number):
         # f_num = -1

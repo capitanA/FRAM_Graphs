@@ -86,10 +86,14 @@ class SceneEvent:
 
         graph = self.graph_compeleter(self.scene_events, framcanvas)
 
+        # ipdb.set_trace()
+
         graphs.append(graph)
+        print(graphs)
+        # ipdb.set_trace()
         messagebox.showinfo(message=f"The Graph number {counter} generated successfully")
 
-        # return self.scene_events
+        return self.scene_events
 
     def graph_compeleter(self, scene_events, framcanvas):
         graph = framcanvas.G
@@ -99,4 +103,7 @@ class SceneEvent:
                            P=edge_attributes[1],
                            T=edge_attributes[2],
                            C=edge_attributes[3], R=edge_attributes[4], value=scen_event.active_func_output)
+        self.scene_events.clear()
+        print(graph)
+        # ipdb.set_trace()
         return graph
